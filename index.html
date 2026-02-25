@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Dashboard | Trend Following</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header / About Section -->
+        <header class="glass-panel profile-header">
+            <div class="title-section">
+                <h1>Portfolio Performance</h1>
+                <p class="subtitle">Systematic Risk & Return Management</p>
+                <p class="about-text">
+                    I am a retail forex trader focusing exclusively on rigorous, systematic trend-following models
+                    across major currency pairs. My philosophy is built around capital preservation first. By tightly
+                    capping risk per trade and allowing winning positions to run, this portfolio aims for consistent
+                    geometric growth with strictly controlled drawdowns.
+                </p>
+            </div>
+
+            <!-- CSV Uploader for Local Preview -->
+            <div class="csv-upload-section">
+                <label for="csvFileInput" class="upload-btn">
+                    Upload MT5 CSV
+                </label>
+                <input type="file" id="csvFileInput" accept=".csv" />
+                <p id="uploadStatus" class="upload-status">Awaiting data...</p>
+            </div>
+        </header>
+
+        <!-- KPI Metrics Grid -->
+        <section class="metrics-grid">
+            <div class="metric-card glass-panel">
+                <h3>Total Return</h3>
+                <div class="value positive" id="valReturn">--%</div>
+            </div>
+            <div class="metric-card glass-panel">
+                <h3>Win Rate</h3>
+                <div class="value" id="valWinRate">--%</div>
+            </div>
+            <div class="metric-card glass-panel">
+                <h3>Profit Factor</h3>
+                <div class="value" id="valProfitFactor">--</div>
+            </div>
+            <div class="metric-card glass-panel">
+                <h3>Max Drawdown</h3>
+                <div class="value negative" id="valDrawdown">--%</div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section glass-panel">
+            <div class="chart-header">
+                <h2>Equity Curve</h2>
+            </div>
+            <div class="chart-container">
+                <canvas id="equityChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Monthly Matrix Section -->
+        <section class="matrix-section glass-panel">
+            <div class="matrix-header">
+                <h2>Monthly Performance</h2>
+                <div class="toggle-container">
+                    <span class="toggle-label">$</span>
+                    <label class="switch">
+                        <input type="checkbox" id="matrixToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">%</span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="monthlyMatrix" class="matrix-table">
+                    <thead>
+                        <!-- Headers will be injected via JS -->
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Chart.js and PapaParse Libraries via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <!-- Main Application Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
