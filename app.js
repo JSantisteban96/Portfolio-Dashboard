@@ -9,25 +9,22 @@ let monthlyDataStructure = {};
 // Adjust this to match your actual starting account balance if you wish.
 const INITIAL_BALANCE = 10000;
 
-document.getElementById('csvFileInput').addEventListener('change', function (e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
+// Fetch data on page load
+document.addEventListener('DOMContentLoaded', () => {
     const statusEl = document.getElementById('uploadStatus');
-    statusEl.textContent = `Processing ${file.name}...`;
 
-    // Parse CSV using PapaParse
-    Papa.parse(file, {
+    Papa.parse('orders.csv', {
+        download: true,
         header: true,
         dynamicTyping: true,
         skipEmptyLines: true,
         complete: function (results) {
             processData(results.data);
-            statusEl.textContent = `Loaded ${results.data.length} records.`;
+            statusEl.textContent = `Live Portfolio Data: ${results.data.length} trades loaded.`;
         },
         error: function (error) {
-            statusEl.textContent = `Error parsing CSV!`;
-            console.error(error);
+            statusEl.textContent = `Error fetching portfolio data!`;
+            console.error("Error fetching CSV:", error);
         }
     });
 });
